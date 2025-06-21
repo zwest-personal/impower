@@ -17,11 +17,14 @@ interface RouteGroup {
 // Route is a standard REST API route
 interface Route {
     path: string;
-    method: 'GET' | 'POST' | 'PATCH' | 'DELETE' | 'PUT' | 'HEAD';
+    method: 'get' | 'post' | 'patch' | 'delete' | 'put' | 'head';
     // TODO define query/path params in type?
 }
 
-export default {
+// Why do this? Mostly for visualizing what the API is going to look like, prior to moving info into a swagger.
+// Bit faster to hash things out this way.
+// As the API grows the route definitions can be moved into their respective route folders
+const RouteList:RouteSet = {
   Base: Config.ApiPath,
   Routes: {
     Debug: {
@@ -29,7 +32,7 @@ export default {
       Actions: {
         Ping: {
           path: '/ping',
-          method: 'GET',
+          method: 'get',
         },
       },
     },
@@ -38,24 +41,24 @@ export default {
       Actions: {
         Get: {
           path: '/{id}',
-          method: 'GET',
+          method: 'get',
         },
         List: {
           path: '/',
-          method: 'GET',
+          method: 'get',
         },
         Create: {
           path: '/',
-          method: 'POST',
+          method: 'post',
 
         },
         Delete: {
           path: '/{id}',
-          method: 'DELETE',
+          method: 'delete',
         },
         Update: {
           path: '/{id}',
-          method: 'PATCH',
+          method: 'patch',
         },
       },
     },
@@ -64,19 +67,19 @@ export default {
       Actions: {
         Get: {
           path: '/{id}',
-          method: 'GET',
+          method: 'get',
         },
         List: {
           path: '/',
-          method: 'GET',
+          method: 'get',
         },
         Create: {
           path: '/',
-          method: 'POST',
+          method: 'post',
         },
         Update: {
           path: '/{id}',
-          method: 'PATCH',
+          method: 'patch',
         },
 
       },
@@ -86,17 +89,19 @@ export default {
       Actions: {
         Status: {
           path: '/',
-          method: 'GET'
+          method: 'get'
         },
         Login: {
           path: '/login',
-          method: 'POST'
+          method: 'post'
         },
         Logout: {
           path: '/logout',
-          method: 'POST'
+          method: 'post'
         }
       }
     }
   },
 };
+
+export default RouteList;
