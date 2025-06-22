@@ -10,6 +10,11 @@ my ability, and projects like this are where I'm able to do that best.  I'll con
 momentum and can do a lot.  So yes, it def took more than four hours but don't feel bad - having a specific goal of some kind
 motivates me and allows me to go a bit ham on things.
 
+Also, did I do this in 4-5h?  Of course not.  But I love experimenting with builds/backends/flows/setup and was trying out
+a pile of new-to-me stuff (eg sequelize), so it's hard to put an exact number on 'hours I spent on the assigned task' vs
+'hours doing stuff that could turn this into a real production app'.  Building up all the things that make all the later things
+come to fruition oh so much faster is my jam.
+
 ## Running
 
 If you have `make`
