@@ -26,8 +26,9 @@ localhost:8080
 ```
 API is at:
 ```
-localhost:8080/api
+localhost:8081/api
 ```
+(TODO - I've done /api routes on the same port via nginx proxy before, but takes a little time to set up so didn't do it for this [YET])
 
 This is what I typically call the 'local' environment.  
 
