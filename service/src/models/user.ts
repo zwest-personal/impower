@@ -20,17 +20,17 @@ import {DataTypes} from "sequelize";
 
 @Table
 class User extends Model {
-    @Column
     @IsUUID(4)
     @PrimaryKey
+    @Column
     userId: string;
 
     @Column
     fullName: string;
 
-    @Column
     @Unique
     @IsEmail
+    @Column
     email: string;
 
     @Column({
