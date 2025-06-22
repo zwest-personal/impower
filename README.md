@@ -13,7 +13,8 @@ motivates me and allows me to go a bit ham on things.
 Also, did I do this in 4-5h?  Of course not.  But I love experimenting with builds/backends/flows/setup and was trying out
 a pile of new-to-me stuff (eg sequelize), so it's hard to put an exact number on 'hours I spent on the assigned task' vs
 'hours doing stuff that could turn this into a real production app'.  Building up all the things that make all the later things
-come to fruition oh so much faster is my jam.
+come to fruition oh so much faster is my jam.  I'm also (to a fault) a completionist. I want everything to be *there* and 
+working, I want it all to look and feel and be complete.
 
 ## Running
 
@@ -106,5 +107,5 @@ Punchlist of items, by the time this gets to git it'll probably have checkmarks 
 
 # "If I kept going"
 - Authorization (eg no deletion unless sufficient rights)
-- Add 'campaigns' - associate notes with campaigns, rather than being freeform.  Campaign could be a specific political year/candidate, referendum, whatever.  Started on this but just as a rudimentary thing.
 - Add websockets in - if two or more canvassers are working the same campaign, push realtime updates to the others to indicate progress, notes, etc.
+- Better unit/integration tests - kinda skimmed over these just as I'd already added in so much.  Generally speaking I see any automated testing as most important for regression prevention rather than testing basic logic (with exceptions)
