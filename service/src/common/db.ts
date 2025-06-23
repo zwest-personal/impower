@@ -4,6 +4,9 @@
 
 import {Sequelize} from 'sequelize-typescript';
 import Config from '@src/common/config';
+import User from "@src/models/user";
+import Campaigns from "@src/models/campaign";
+import Note from "@src/models/note";
 
 const DB = new Sequelize({
     database: Config.MysqlDb,
@@ -11,11 +14,15 @@ const DB = new Sequelize({
     password: Config.MysqlPass,
     host: Config.MysqlHost,
     port: Config.MysqlPort,
-    dialect: 'mysql',
-    models: [__dirname + '/../models'],
+    dialect: 'mysql'
 });
 
-// Additional stuff we could add here - session check, reconnect behaviors, etc
+// TODO Use the auto-initialization option (if it's worth picking at)
+DB.addModels([User, Note, Campaigns]);
+
+(async () => {
+    await DB.sync({force: true});
+})();
 
 export default DB;
 
