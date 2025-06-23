@@ -1,18 +1,40 @@
 import HttpStatusCodes from 'http-status-codes';
-import { HTTPResponse } from '@src/common/jsend/http';
+import {HTTPResponse} from '@src/common/jsend/http';
 import {IReq, IRes} from '../common';
+import {
+    Sequelize,
+} from "sequelize-typescript";
+import Note from "@src/models/note";
 
 /**
  * List fetches all notes from DB, using some manner of filter
  *
  * @TODO pagination
- * @TODO Filters (beyond fulltext)
  *
- * @param _
+ * @param req
  * @param res
  */
-function list(_: IReq, res: IRes) {
-    res.status(HttpStatusCodes.NOT_IMPLEMENTED).json();
+async function list(req: IReq, res: IRes) {
+    try {
+        let query = {}
+        if (!!req.query.text) {
+            console.log(req.query.text);
+            query = {
+                where: Sequelize.literal('MATCH (email, notes) AGAINST (:search)'),
+                replacements:
+                    {
+                        search: req.query.text
+                    }
+            }
+        }
+
+        let n = await Note.findAll(query)
+
+        res.status(HttpStatusCodes.OK).json(HTTPResponse.success({notes: n || []}))
+    } catch (e) {
+        console.log(e)
+        res.status(HttpStatusCodes.INTERNAL_SERVER_ERROR).json(HTTPResponse.error("Error fetching note list"))
+    }
 }
 
 export default list;

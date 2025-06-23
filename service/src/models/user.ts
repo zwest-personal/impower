@@ -64,12 +64,8 @@ class User extends Model {
      * Uses email as slt in this case, but in real world setups you'd want something more robust (or again,
      * just use a third party IDP)
      */
-    async validatePassword(email: string, password: string): Promise<boolean> {
-        const result = await User.findOne({ where: { email: email }})
-        if (result === null) {
-            return false
-        }
-        return await bcrypt.compare(password, (result as User).password);
+    async validatePassword(encryptedPassword: string, rawPassword: string): Promise<boolean> {
+        return await bcrypt.compare(rawPassword, encryptedPassword);
     }
 }
 

@@ -30,6 +30,10 @@
     "scripts",
     "eslint.config.ts"
   ],
+  "typeRoots": [
+    "./src/types",
+    "./node_modules/@types"
+  ],
   "rules": {
     "max-line-length": [
       true,

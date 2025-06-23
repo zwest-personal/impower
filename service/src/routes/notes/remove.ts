@@ -1,17 +1,31 @@
 import HttpStatusCodes from 'http-status-codes';
 import { HTTPResponse } from '@src/common/jsend/http';
 import {IReq, IRes} from '../common';
+import Note from "@src/models/note";
 
 /**
  * Remove deletes (softly) a singular note
  *
  * 'remove' rather than 'delete' due to reserved words
  *
- * @param _
+ * TODO Add auditling, logging, soft-delete, authorization, etc
+ *
+ * @param req
  * @param res
  */
-function remove(_: IReq, res: IRes) {
-    res.status(HttpStatusCodes.NOT_IMPLEMENTED).json();
+async function remove(req: IReq, res: IRes) {
+    try {
+        let n = await Note.destroy({where: {noteId: req.params.id}})
+
+        if (!n) {
+            throw new Error('Note not found')
+        }
+
+        res.status(HttpStatusCodes.NO_CONTENT)
+    } catch (e) {
+        console.log(e)
+        res.status(HttpStatusCodes.NOT_FOUND).json(HTTPResponse.error("Note not found"))
+    }
 }
 
 export default remove;

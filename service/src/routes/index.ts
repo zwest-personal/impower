@@ -1,9 +1,9 @@
 import { Router } from 'express';
 
 import DebugRouter from '@src/routes/debug';
-// import NotesRouter from '@src/routes/notes';
-// import UsersRouter from '@src/routes/users';
-// import CampaignRouter from '@src/routes/campaigns';
+import NotesRouter from '@src/routes/notes';
+import UsersRouter from '@src/routes/users';
+import CampaignsRouter from '@src/routes/campaigns';
 
 
 import RouteList from "@src/common/routes";
@@ -17,8 +17,8 @@ import RouteList from "@src/common/routes";
 
 const routes = Router();
 routes.use(RouteList.Routes.Debug.Base, DebugRouter);
-// routes.use(RouteList.Routes.Users.Base, UserRouter);
-// routes.use(RouteList.Routes.Notes.Base, NotesRouter);
-// routes.use(RouteList.Routes.Campaigns.Base, CampaignsRouter);
+routes.use(RouteList.Routes.Users.Base, UsersRouter);
+routes.use(RouteList.Routes.Notes.Base, NotesRouter);
+routes.use(RouteList.Routes.Campaigns.Base, CampaignsRouter);
 
 export default routes;

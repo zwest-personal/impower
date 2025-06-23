@@ -14,7 +14,7 @@ import create from './create'
 
 notesRouter[RouteList.Routes.Notes.Actions.List.method](RouteList.Routes.Notes.Actions.List.path, list);
 notesRouter[RouteList.Routes.Notes.Actions.Get.method](RouteList.Routes.Notes.Actions.Get.path, get);
-notesRouter[RouteList.Routes.Notes.Actions.Delete.method](RouteList.Routes.Notes.Actions.Delete.path, remove);
+notesRouter[RouteList.Routes.Notes.Actions.Remove.method](RouteList.Routes.Notes.Actions.Remove.path, remove);
 notesRouter[RouteList.Routes.Notes.Actions.Update.method](RouteList.Routes.Notes.Actions.Update.path, update);
 notesRouter[RouteList.Routes.Notes.Actions.Create.method](RouteList.Routes.Notes.Actions.Create.path, create);
 

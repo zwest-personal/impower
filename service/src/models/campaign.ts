@@ -1,4 +1,15 @@
-import {Model, Column, CreatedAt, IsUUID, PrimaryKey, Table, UpdatedAt} from "sequelize-typescript";
+import {
+    Model,
+    Column,
+    CreatedAt,
+    IsUUID,
+    PrimaryKey,
+    Table,
+    UpdatedAt,
+    Unique,
+    BeforeCreate
+} from "sequelize-typescript";
+import {v4} from "uuid";
 
 /**
  * Campaign model
@@ -17,6 +28,7 @@ class Campaign extends Model {
     @Column
     campaignId: string;
 
+    @Unique
     @Column
     name: string
 
@@ -25,6 +37,11 @@ class Campaign extends Model {
 
     @UpdatedAt
     updatedAt: Date
+
+    @BeforeCreate
+    static createUUID(instance: Campaign) {
+        instance.campaignId = v4()
+    }
 }
 
 export default Campaign;

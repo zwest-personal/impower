@@ -14,6 +14,8 @@ import session from "express-session"
 import {createClient} from "redis"
 import Config from "@src/common/config";
 
+import "@src/common/db"; // Self initialize to prep sequelize + models
+
 const app = express();
 
 // Basic middleware
@@ -49,6 +51,7 @@ app.use((err: Error, _: Request, res: Response, next: NextFunction) => {
   }
   return next(err);
 });
+
 
 // Add HTTP Routes
 app.use(RouteList.Base, ApiRouter);

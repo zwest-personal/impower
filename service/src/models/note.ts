@@ -5,10 +5,11 @@
  With additional freeform notes.
  */
 import {
+    BeforeCreate,
     Column,
     CreatedAt,
     DataType,
-    ForeignKey,
+    ForeignKey, Index,
     IsEmail,
     IsUUID,
     Model,
@@ -18,6 +19,7 @@ import {
 } from "sequelize-typescript"
 import Campaign from "@src/models/campaign";
 import User from "@src/models/user";
+import {v4} from "uuid";
 
 class Note extends Model {
     @IsUUID(4)
@@ -25,11 +27,20 @@ class Note extends Model {
     @Column
     noteId: string;
 
+    @Index({
+        name: "text-search",
+        type: "FULLTEXT",
+        concurrently: true,
+    })
     @IsEmail
-    @Unique
     @Column
     email: string
 
+    @Index({
+        name: "text-search",
+        type: "FULLTEXT",
+        concurrently: true,
+    })
     @Column(DataType.TEXT)
     notes: string
 
@@ -49,6 +60,14 @@ class Note extends Model {
     @IsUUID(4)
     @Column
     campaignId: string;
+
+    @BeforeCreate
+    static createUUID(instance: Note) {
+        instance.noteId = v4()
+    }
+
+
+
 }
 
 export default Note;

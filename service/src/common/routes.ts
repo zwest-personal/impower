@@ -46,7 +46,7 @@ const RouteList:RouteSet = {
       Base: '/notes',
       Actions: {
         Get: {
-          path: '/{id}',
+          path: '/:id',
           method: 'get',
         },
         List: {
@@ -57,12 +57,12 @@ const RouteList:RouteSet = {
           path: '/',
           method: 'post',
         },
-        Delete: {
-          path: '/{id}',
+        Remove: {
+          path: '/:id',
           method: 'delete',
         },
         Update: {
-          path: '/{id}',
+          path: '/:id',
           method: 'patch',
         },
       },
@@ -71,7 +71,7 @@ const RouteList:RouteSet = {
       Base: '/campaigns',
       Actions: {
         Get: {
-          path: '/{id}',
+          path: '/:id',
           method: 'get',
         },
         List: {
