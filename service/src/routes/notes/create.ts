@@ -10,6 +10,7 @@ import Note from "@src/models/note";
  */
 async function create(req: IReq, res: IRes) {
     try {
+        req.body.userId = req.session.user?.userId
         const note = await Note.create(req.body);
         if (!note) {
             throw new Error("Unable to create a note");

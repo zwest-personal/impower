@@ -2,6 +2,7 @@ import {Alert, Button, FormControl, InputLabel, OutlinedInput, Snackbar} from "@
 import {Text} from "../common/styles.ts";
 import {useState} from "react";
 import {UsersService} from "../services/users.tsx";
+import ErrorPopup from "./widgets/ErrorPopup.tsx";
 
 export default function Create({setRegister, setRegisterSuccess}: {
     setRegister: Function,
@@ -69,14 +70,8 @@ export default function Create({setRegister, setRegisterSuccess}: {
                 <Button variant="outlined" color="error" size="large"
                         onClick={() => setRegister(false)}>Return to Login</Button>
             </FormControl>
-            <Snackbar open={!!registerError} autoHideDuration={3000}>
-                <Alert
-                    severity='error'
-                    sx={{ width: '100%' }}
-                >
-                    {registerError}
-                </Alert>
-            </Snackbar>
+            <ErrorPopup error={registerError} setError={setRegisterError} />
+
         </form>
     )
 }

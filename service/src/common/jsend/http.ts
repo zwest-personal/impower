@@ -2,27 +2,27 @@ import {JSend} from '@src/common/jsend/jsend';
 
 export interface ApiResponse {
     status: 'success' | 'fail' | 'error';
-    data?: never;
+    data?: any;
     message?: string | null;
 }
 
 class Response implements JSend {
   // https://github.com/omniti-labs/jsend
-  public success(data: never): ApiResponse {
+  public success(data: any): ApiResponse {
     return {
       status: 'success',
       data,
     };
   }
 
-  public fail(data: never): ApiResponse {
+  public fail(data: any): ApiResponse {
     return {
       status: 'fail',
       data,
     };
   }
 
-  public error(message: string | null, data?: never): ApiResponse {
+  public error(message: string | null, data?: any): ApiResponse {
     return {
       status: 'error',
       message,

@@ -5,6 +5,7 @@ import {
     Sequelize,
 } from "sequelize-typescript";
 import Note from "@src/models/note";
+import Campaign from "@src/models/campaign";
 
 /**
  * List fetches all notes from DB, using some manner of filter
@@ -20,11 +21,16 @@ async function list(req: IReq, res: IRes) {
         if (!!req.query.text) {
             console.log(req.query.text);
             query = {
+                include: Campaign,
                 where: Sequelize.literal('MATCH (email, notes) AGAINST (:search)'),
                 replacements:
                     {
                         search: req.query.text
                     }
+            }
+        } else {
+            query = {
+                include: Campaign,
             }
         }
 

@@ -1,5 +1,4 @@
 import {api} from "./api.tsx";
-import type {Note} from "../models/Note.tsx";
 import type {User} from "../models/User.tsx";
 
 export const UsersService = {
@@ -47,6 +46,7 @@ export const UsersService = {
      * Status queries the backend for info about 'this' user
      */
     async status() {
-
+        const result = await api.get(`/users`)
+        return result.data
     }
 }

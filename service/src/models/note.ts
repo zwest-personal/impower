@@ -5,7 +5,7 @@
  With additional freeform notes.
  */
 import {
-    BeforeCreate,
+    BeforeCreate, BelongsTo,
     Column,
     CreatedAt,
     DataType,
@@ -51,23 +51,14 @@ class Note extends Model {
     updatedAt: Date
 
     // Foreign Keys
-    @ForeignKey(() => User)
-    @IsUUID(4)
-    @Column
-    userId: string;
-
-    @ForeignKey(() => Campaign)
-    @IsUUID(4)
-    @Column
-    campaignId: string;
+    @BelongsTo(() => User)
+    @BelongsTo(() => Campaign)
 
     @BeforeCreate
     static createUUID(instance: Note) {
         instance.noteId = v4()
     }
-
-
-
 }
+
 
 export default Note;

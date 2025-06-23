@@ -7,7 +7,7 @@
 import {
     BeforeCreate,
     BeforeUpdate,
-    Column,
+    Column, HasMany,
     IsEmail,
     IsUUID,
     Model,
@@ -18,6 +18,7 @@ import {
 import bcrypt from "bcrypt"
 import {DataTypes} from "sequelize";
 import { v4 } from 'uuid'
+import Note from "@src/models/note";
 
 @Table
 class User extends Model {
@@ -57,6 +58,8 @@ class User extends Model {
         const salt = bcrypt.genSaltSync();
         instance.password = bcrypt.hashSync(instance.password, salt);
     };
+
+    @HasMany(() => Note)
 
     /**
      * validatePassword is a simplistic Auth pass that just returns true/false based on username and password.

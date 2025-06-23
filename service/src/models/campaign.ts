@@ -7,9 +7,10 @@ import {
     Table,
     UpdatedAt,
     Unique,
-    BeforeCreate
+    BeforeCreate, HasMany
 } from "sequelize-typescript";
 import {v4} from "uuid";
+import Note from "@src/models/note";
 
 /**
  * Campaign model
@@ -37,6 +38,8 @@ class Campaign extends Model {
 
     @UpdatedAt
     updatedAt: Date
+
+    @HasMany(() => Note)
 
     @BeforeCreate
     static createUUID(instance: Campaign) {
