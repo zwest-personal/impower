@@ -7,12 +7,14 @@ import RouteList from '@src/common/routes';
 const usersRouter = Router();
 
 // Handlers
-import get from './get'
+import status from './status'
 import login from './login'
 import logout from './logout'
+import create from './create'
 
-usersRouter[RouteList.Routes.Notes.Actions.Get.method](RouteList.Routes.Notes.Actions.Get.path, get);
-usersRouter[RouteList.Routes.Notes.Actions.Login.method](RouteList.Routes.Notes.Actions.Login.path, login);
-usersRouter[RouteList.Routes.Notes.Actions.Logout.method](RouteList.Routes.Notes.Actions.Logout.path, logout);
+usersRouter[RouteList.Routes.Users.Actions.Status.method](RouteList.Routes.Users.Actions.Status.path, status);
+usersRouter[RouteList.Routes.Users.Actions.Login.method](RouteList.Routes.Users.Actions.Login.path, login);
+usersRouter[RouteList.Routes.Users.Actions.Logout.method](RouteList.Routes.Users.Actions.Logout.path, logout);
+usersRouter[RouteList.Routes.Users.Actions.Create.method](RouteList.Routes.Users.Actions.Create.path, create);
 
 export default usersRouter;
