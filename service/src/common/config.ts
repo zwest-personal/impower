@@ -13,6 +13,8 @@ const Config = jetEnv({
   MysqlPass: str,
   MysqlHost: str,
   MysqlPort: num,
+
+  RedisCn: str,
 });
 
 export default Config;
