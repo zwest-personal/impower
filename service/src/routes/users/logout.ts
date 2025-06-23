@@ -8,8 +8,10 @@ import {IReq, IRes} from '../common';
  * @param _
  * @param res
  */
-function logout(_: IReq, res: IRes) {
-    res.status(HttpStatusCodes.NOT_IMPLEMENTED).json();
+function logout(req: IReq, res: IRes) {
+    req.session.destroy(() => {
+        res.status(HttpStatusCodes.OK).json(HTTPResponse.success({}))
+    })
 }
 
 export default logout;
