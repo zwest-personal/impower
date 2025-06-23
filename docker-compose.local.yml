@@ -76,4 +76,14 @@ services:
       MYSQL_PASSWORD: mysql_password
     ports:
       - "13306:3306"
-
+  redis:
+    # Why redis?  Because it's easy, fast, reliable.  Great for session storage and caching
+    restart: always
+    image: redis:latest
+    ports:
+      - "6379"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
