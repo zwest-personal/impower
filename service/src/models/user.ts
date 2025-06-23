@@ -17,6 +17,7 @@ import {
 } from "sequelize-typescript";
 import bcrypt from "bcrypt"
 import {DataTypes} from "sequelize";
+import { v4 } from 'uuid'
 
 @Table
 class User extends Model {
@@ -34,7 +35,7 @@ class User extends Model {
     email: string;
 
     @Column({
-        type: DataTypes.STRING(40)
+        type: DataTypes.STRING(80)
     })
     password: string;
 
@@ -45,6 +46,11 @@ class User extends Model {
             instance.password = bcrypt.hashSync(instance.password, salt);
         }
     };
+
+    @BeforeCreate
+    static createUUID(instance: User) {
+        instance.userId = v4()
+    }
 
     @BeforeCreate
     static createHashedPassword(instance: User) {

@@ -12,9 +12,9 @@ import {Model, Column, CreatedAt, IsUUID, PrimaryKey, Table, UpdatedAt} from "se
 
 @Table
 class Campaign extends Model {
-    @Column
     @IsUUID(4)
     @PrimaryKey
+    @Column
     campaignId: string;
 
     @Column

@@ -20,14 +20,14 @@ import Campaign from "@src/models/campaign";
 import User from "@src/models/user";
 
 class Note extends Model {
-    @Column
     @IsUUID(4)
     @PrimaryKey
+    @Column
     noteId: string;
 
-    @Column
     @IsEmail
     @Unique
+    @Column
     email: string
 
     @Column(DataType.TEXT)
@@ -41,13 +41,13 @@ class Note extends Model {
 
     // Foreign Keys
     @ForeignKey(() => User)
-    @Column
     @IsUUID(4)
+    @Column
     userId: string;
 
     @ForeignKey(() => Campaign)
-    @Column
     @IsUUID(4)
+    @Column
     campaignId: string;
 }
 
