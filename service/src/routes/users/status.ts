@@ -8,7 +8,7 @@ import {IReq, IRes} from '../common';
  * @param res
  */
 function status(req: IReq, res: IRes) {
-    res.status(HttpStatusCodes.OK).json(HTTPResponse.success(req.session.user));
+  res.status(HttpStatusCodes.OK).json(HTTPResponse.success(req.session.user));
 }
 
 export default status;

@@ -9,7 +9,7 @@ import {IReq, IRes} from '../common';
  * @param res
  */
 function ping(req: IReq, res: IRes) {
-    res.status(HttpStatusCodes.OK).json(HTTPResponse.success(req.session));
+  res.status(HttpStatusCodes.OK).json(HTTPResponse.success(req.session));
 }
 
 export default ping;

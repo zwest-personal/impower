@@ -5,59 +5,82 @@
  With additional freeform notes.
  */
 import {
-    BeforeCreate, BelongsTo,
-    Column,
-    CreatedAt,
-    DataType,
-    ForeignKey, Index,
-    IsEmail,
-    IsUUID,
-    Model,
-    PrimaryKey,
-    Unique,
-    UpdatedAt
-} from "sequelize-typescript"
-import Campaign from "@src/models/campaign";
-import User from "@src/models/user";
-import {v4} from "uuid";
+  BeforeCreate, BelongsTo,
+  Column,
+  CreatedAt,
+  DataType,
+  ForeignKey, HasMany, Index,
+  IsEmail,
+  IsUUID,
+  Model,
+  PrimaryKey,
+  Unique,
+  UpdatedAt,
+} from 'sequelize-typescript';
+import Campaign from '@src/models/campaign';
+import User from '@src/models/user';
+import {v4} from 'uuid';
+import {Charsets} from "mysql2";
 
 class Note extends Model {
-    @IsUUID(4)
-    @PrimaryKey
-    @Column
-    noteId: string;
+  @IsUUID(4)
+  @PrimaryKey
+  @Column
+  noteId: string;
 
-    @Index({
-        name: "text-search",
-        type: "FULLTEXT",
-        concurrently: true,
-    })
-    @IsEmail
-    @Column
-    email: string
+  @Index({
+    name: 'text-search',
+    type: 'FULLTEXT',
+    concurrently: true,
+    collate: 'NOCASE',
+  })
+  @Column
+  fullName: string;
 
-    @Index({
-        name: "text-search",
-        type: "FULLTEXT",
-        concurrently: true,
-    })
-    @Column(DataType.TEXT)
-    notes: string
+  @Index({
+    name: 'text-search',
+    type: 'FULLTEXT',
+    concurrently: true,
+    collate: 'NOCASE',
+  })
+  @IsEmail
+  @Column
+  email: string;
 
-    @CreatedAt
-    createdAt: Date
+  @Index({
+    name: 'text-search',
+    type: 'FULLTEXT',
+    concurrently: true,
+    collate: 'NOCASE',
+  })
+  @Column(DataType.TEXT)
+  notes: string;
 
-    @UpdatedAt
-    updatedAt: Date
+  @CreatedAt
+  createdAt: Date;
 
-    // Foreign Keys
-    @BelongsTo(() => User)
-    @BelongsTo(() => Campaign)
+  @UpdatedAt
+  updatedAt: Date;
 
-    @BeforeCreate
-    static createUUID(instance: Note) {
-        instance.noteId = v4()
-    }
+  // Foreign Keys
+  @ForeignKey(() => User)
+  @Column
+  userId: string;
+
+  @BelongsTo(() => User)
+  user: User;
+
+  @ForeignKey(() => Campaign)
+  @Column
+  campaignId: string;
+
+  @BelongsTo(() => Campaign)
+  campaign: Campaign;
+
+  @BeforeCreate
+  static createUUID(instance: Note) {
+    instance.noteId = v4();
+  }
 }
 
 

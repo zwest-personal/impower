@@ -1,16 +1,16 @@
 import {
-    Model,
-    Column,
-    CreatedAt,
-    IsUUID,
-    PrimaryKey,
-    Table,
-    UpdatedAt,
-    Unique,
-    BeforeCreate, HasMany
-} from "sequelize-typescript";
-import {v4} from "uuid";
-import Note from "@src/models/note";
+  Model,
+  Column,
+  CreatedAt,
+  IsUUID,
+  PrimaryKey,
+  Table,
+  UpdatedAt,
+  Unique,
+  BeforeCreate, HasMany, ForeignKey,
+} from 'sequelize-typescript';
+import {v4} from 'uuid';
+import Note from '@src/models/note';
 
 /**
  * Campaign model
@@ -24,27 +24,28 @@ import Note from "@src/models/note";
 
 @Table
 class Campaign extends Model {
-    @IsUUID(4)
-    @PrimaryKey
-    @Column
-    campaignId: string;
+  @IsUUID(4)
+  @PrimaryKey
+  @Column
+  campaignId: string;
 
-    @Unique
-    @Column
-    name: string
+  @Unique
+  @Column
+  name: string;
 
-    @CreatedAt
-    createdAt: Date
+  @CreatedAt
+  createdAt: Date;
 
-    @UpdatedAt
-    updatedAt: Date
+  @UpdatedAt
+  updatedAt: Date;
+  //
+  // @HasMany(() => Note)
+  // notes: Note[];
 
-    @HasMany(() => Note)
-
-    @BeforeCreate
-    static createUUID(instance: Campaign) {
-        instance.campaignId = v4()
-    }
+  @BeforeCreate
+  static createUUID(instance: Campaign) {
+    instance.campaignId = v4();
+  }
 }
 
 export default Campaign;

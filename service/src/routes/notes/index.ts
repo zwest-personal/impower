@@ -6,11 +6,11 @@ import RouteList from '@src/common/routes';
 const notesRouter = Router();
 
 // Handlers
-import list from './list'
-import get from './get'
-import remove from './remove'
-import update from './update'
-import create from './create'
+import list from './list';
+import get from './get';
+import remove from './remove';
+import update from './update';
+import create from './create';
 
 notesRouter[RouteList.Routes.Notes.Actions.List.method](RouteList.Routes.Notes.Actions.List.path, list);
 notesRouter[RouteList.Routes.Notes.Actions.Get.method](RouteList.Routes.Notes.Actions.Get.path, get);

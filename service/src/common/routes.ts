@@ -21,7 +21,7 @@ interface Route {
     // TODO define query/path params in type?
 }
 
-console.log('APIPath: ', Config.ApiPath)
+console.log('APIPath: ', Config.ApiPath);
 
 // Why do this? Mostly for visualizing what the API is going to look like, prior to moving info into a swagger.
 // Bit faster to hash things out this way.
@@ -39,7 +39,7 @@ const RouteList:RouteSet = {
         Session: {
           path: '/session',
           method: 'get',
-        }
+        },
       },
     },
     Notes: {
@@ -93,18 +93,18 @@ const RouteList:RouteSet = {
         },
         Status: {
           path: '/',
-          method: 'get'
+          method: 'get',
         },
         Login: {
           path: '/login',
-          method: 'post'
+          method: 'post',
         },
         Logout: {
           path: '/logout',
-          method: 'post'
-        }
-      }
-    }
+          method: 'post',
+        },
+      },
+    },
   },
 };
 

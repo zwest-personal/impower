@@ -22,6 +22,10 @@ If you have `make`
 ```
 make impower
 ```
+or
+```	
+docker-compose -f docker-compose.local.yml up --build
+```
 Requires Docker and Docker Compose.
 
 Will stand up a MySQL container with some starting data, React front end, and NodeTS backend locally.
@@ -82,28 +86,11 @@ Using Serialize ORM for DB since we don't need any fine tuning at this time.
 Punchlist of items, by the time this gets to git it'll probably have checkmarks next to some entries.
 
 - Start up service
-- Build out tables (users, notes, ?)
-- Inject two default users (admin and one 'normal' user)
-- Stand up Node TS backend, with routes: 
-- login 
-- login callback
-- logout routes 
-- (POST) create note 
-- (GET) list notes (w/query filtering, fulltext?)
-- (PATCH) update note
-- (DELETE) delete/archive note
-- (POST) anonymize note
+- (POST) anonymize note (Future)
 - (POST) create campaign (Future)
 - (PATCH) edit campaign (Future)
-- Stand up React front end: 
-- Material
-- login page
-- Auth guard
-- new note page
-- edit note page
-- list notes page
-- Export to CSV 'current' results 
 - Build Serverless deploy
+- Fix text filterization - Using MySQL Fulltext which uses 'natural' filtering
 
 # "If I kept going"
 - Authorization (eg no deletion unless sufficient rights)

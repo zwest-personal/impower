@@ -9,9 +9,9 @@ import {IReq, IRes} from '../common';
  * @param res
  */
 function logout(req: IReq, res: IRes) {
-    req.session.destroy(() => {
-        res.status(HttpStatusCodes.OK).json(HTTPResponse.success({}))
-    })
+  req.session.destroy(() => {
+    res.status(HttpStatusCodes.OK).json(HTTPResponse.success({}));
+  });
 }
 
 export default logout;

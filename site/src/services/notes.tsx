@@ -17,7 +17,7 @@ export const NotesService = {
      */
     async list(text?: string): Promise<Note[]> {
         let query = ''
-        if (!!text) {
+        if (text) {
             query += `?text=${text}`
         }
         const result = await api.get(`/notes${query}`)
@@ -37,7 +37,7 @@ export const NotesService = {
      * update an existing note
      */
     async update(id: string, note: Note):Promise<Note>  {
-        const result = await api.post(`/notes/${id}`, note)
+        const result = await api.patch(`/notes/${id}`, note)
         return result.data
     },
 

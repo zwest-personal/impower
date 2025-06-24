@@ -4,7 +4,7 @@
 import {Router} from 'express';
 import RouteList from '@src/common/routes';
 
-import ping from './ping'
+import ping from './ping';
 
 const debugRouter = Router();
 

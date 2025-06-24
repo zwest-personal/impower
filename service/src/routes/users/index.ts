@@ -7,10 +7,10 @@ import RouteList from '@src/common/routes';
 const usersRouter = Router();
 
 // Handlers
-import status from './status'
-import login from './login'
-import logout from './logout'
-import create from './create'
+import status from './status';
+import login from './login';
+import logout from './logout';
+import create from './create';
 
 usersRouter[RouteList.Routes.Users.Actions.Status.method](RouteList.Routes.Users.Actions.Status.path, status);
 usersRouter[RouteList.Routes.Users.Actions.Login.method](RouteList.Routes.Users.Actions.Login.path, login);

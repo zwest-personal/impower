@@ -6,7 +6,7 @@ import UsersRouter from '@src/routes/users';
 import CampaignsRouter from '@src/routes/campaigns';
 
 
-import RouteList from "@src/common/routes";
+import RouteList from '@src/common/routes';
 
 /**
  * Set up REST routes
