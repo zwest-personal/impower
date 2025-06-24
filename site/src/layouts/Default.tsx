@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Outlet, useLocation, useParams, matchPath} from 'react-router';
+import {Outlet} from 'react-router';
 import {DashboardLayout} from '@toolpad/core/DashboardLayout';
 import {PageContainer} from '@toolpad/core/PageContainer';
 import {CssBaseline} from '@mui/material';
@@ -23,7 +23,10 @@ export default function Layout() {
 
   return (
     <CssBaseline>
-      <DashboardLayout>
+      <DashboardLayout
+        slots={{
+        toolbarActions: () => null,
+        }}>
         <PageContainer>
           <Outlet/>
         </PageContainer>

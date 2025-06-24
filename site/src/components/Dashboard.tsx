@@ -19,7 +19,6 @@ const useStyles = makeStyles({
   }
 })
 
-
 const nav: Navigation = [
   {
     kind: 'header',
@@ -47,7 +46,7 @@ export default function Dashboard() {
 
   return (
     <Box width={1}>
-        <ReactRouterAppProvider navigation={nav} branding={branding}>
+        <ReactRouterAppProvider navigation={nav} branding={branding} >
           <Outlet/>
         </ReactRouterAppProvider>
     </Box>
