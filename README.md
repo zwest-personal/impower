@@ -10,7 +10,7 @@ my ability, and projects like this are where I'm able to do that best.  I'll con
 momentum and can do a lot.  So yes, it def took more than four hours but don't feel bad - having a specific goal of some kind
 motivates me and allows me to go a bit ham on things.
 
-Also, did I do this in 4-5h?  Of course not.  But I love experimenting with builds/backends/flows/setup and was trying out
+Also, did I do this in 4-5h?  Most definitely not...  But I love experimenting with builds/backends/flows/setup and was trying out
 a pile of new-to-me stuff (eg sequelize), so it's hard to put an exact number on 'hours I spent on the assigned task' vs
 'hours doing stuff that could turn this into a real production app'.  Building up all the things that make all the later things
 come to fruition oh so much faster is my jam.  I'm also (to a fault) a completionist. I want everything to be *there* and 
@@ -36,15 +36,15 @@ localhost:8080
 ```
 API is at:
 ```
-localhost:8081/api
+localhost:8080/api
 ```
-(TODO - I've done /api routes on the same port via nginx proxy before, but takes a little time to set up so didn't do it for this [YET])
-
 This is what I typically call the 'local' environment.  
 
-Dev/remote location is TBD and deployed via serverless framework (AWS using API Gateway + Lambda + S3).
-Auth is just via the local db - I could use Cognito to keep with the AWS usage but frankly having used cognito a bit I'm not
-a huuuge fan of it and didn't want to add it to this.
+Dev/remote setup is a WIP - building out a fresh CICD pipeline takes a bit more time and didn't want to hold up the code for it.
+
+Unit/Integration tests are also a WIP - I'll confess I'm not the best about making sure they're always there and don't
+tend to work in a TDD fashion so they end up coming after the feature is done and just test the happy path.  Generally
+I treat them as primarily a regression protection.
 
 ## Folders
 `docs` contains the original design spec, a rough design outline, and anything else I put together.
@@ -80,11 +80,13 @@ part created to try to showcase skill-set, but also to keep up on various tech.
 
 UI was stood up with Vite
 Backend is just manual code (with some imports of my own previous creations)
-Using Serialize ORM for DB since we don't need any fine tuning at this time.
+Using Serialize ORM for DB since we don't need any fine tuning at this time and it seemed like a step up from
+previous ORMs I've used.
 
 # TODOS
 Punchlist of items, by the time this gets to git it'll probably have checkmarks next to some entries.
 
+- More validation
 - More campaign options
 - Better multi-user behaviors (eg restricting deletions to original poster)
 - Build Serverless deploy
