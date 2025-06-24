@@ -1,10 +1,10 @@
 import {Button, FormControl, InputLabel, OutlinedInput} from "@mui/material";
 import {Text} from "../common/styles.ts";
-import {useState, type Dispatch, type SetStateAction, type FormEventHandler} from "react";
+import {useState, type Dispatch, type SetStateAction, type FormEvent} from "react";
 import {UsersService} from "../services/users.tsx";
 import ErrorPopup from "./widgets/ErrorPopup.tsx";
 import {makeStyles} from "@mui/styles";
-import type { AxiosError } from "axios";
+import { AxiosError } from "axios";
 
 const useStyles = makeStyles({
   root: {
@@ -38,7 +38,7 @@ export default function Create({setRegister, setRegisterSuccess}: {
 
     const [registerError, setRegisterError] = useState('');
 
-    const onSubmit = async (e) => {
+    const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         try {
             await UsersService.create({
@@ -49,8 +49,10 @@ export default function Create({setRegister, setRegisterSuccess}: {
             setRegister(false)
             setRegisterSuccess(true)
         }
-        catch (err) {
-            setRegisterError((err as AxiosError).response.data.message)
+        catch (err: unknown) {
+          if (err instanceof AxiosError) {
+            setRegisterError(err?.response?.data.message)
+          }
         }
 
     }

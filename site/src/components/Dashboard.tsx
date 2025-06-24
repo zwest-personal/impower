@@ -1,4 +1,3 @@
-import * as React from 'react';
 import {type Navigation} from '@toolpad/core/AppProvider';
 import {Outlet} from 'react-router';
 import GroupsIcon from "@mui/icons-material/Groups";
