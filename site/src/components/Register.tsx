@@ -1,9 +1,10 @@
-import {Alert, Button, FormControl, InputLabel, OutlinedInput, Snackbar} from "@mui/material";
+import {Button, FormControl, InputLabel, OutlinedInput} from "@mui/material";
 import {Text} from "../common/styles.ts";
-import {useState} from "react";
+import {useState, type Dispatch, type SetStateAction, type FormEventHandler} from "react";
 import {UsersService} from "../services/users.tsx";
 import ErrorPopup from "./widgets/ErrorPopup.tsx";
 import {makeStyles} from "@mui/styles";
+import type { AxiosError } from "axios";
 
 const useStyles = makeStyles({
   root: {
@@ -28,8 +29,8 @@ const useStyles = makeStyles({
 
 
 export default function Create({setRegister, setRegisterSuccess}: {
-    setRegister: Function,
-    setRegisterSuccess: Function
+    setRegister: Dispatch<SetStateAction<boolean>>,
+    setRegisterSuccess: Dispatch<SetStateAction<boolean>>
 }) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -37,7 +38,7 @@ export default function Create({setRegister, setRegisterSuccess}: {
 
     const [registerError, setRegisterError] = useState('');
 
-    const onSubmit = async e => {
+    const onSubmit = async (e) => {
         e.preventDefault();
         try {
             await UsersService.create({
@@ -48,8 +49,8 @@ export default function Create({setRegister, setRegisterSuccess}: {
             setRegister(false)
             setRegisterSuccess(true)
         }
-        catch (e) {
-            setRegisterError(e.response.data.message)
+        catch (err) {
+            setRegisterError((err as AxiosError).response.data.message)
         }
 
     }
@@ -93,7 +94,7 @@ export default function Create({setRegister, setRegisterSuccess}: {
                 <Button variant="outlined" color="error" size="large" type="submit">Register</Button>
               </FormControl>
               <FormControl sx={{m: 1, width: '25ch'}} variant="outlined">
-                <Button variant="outlined" color="cancel" size="large"
+                <Button variant="outlined" color="info" size="large"
                         onClick={() => setRegister(false)}>Return to Login</Button>
               </FormControl>
             </div>

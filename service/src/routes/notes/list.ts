@@ -21,7 +21,7 @@ async function list(req: IReq, res: IRes) {
     if (!!req.query.text) {
       query = {
         include: Campaign,
-        where: Sequelize.literal('MATCH (fullName, notes, email) AGAINST (:search)'),
+        where: Sequelize.literal('MATCH (fullName, notes, email) AGAINST (:search IN BOOLEAN MODE)'),
         replacements:
           {
             search: req.query.text,

@@ -101,7 +101,7 @@ function Notes() {
           margin="dense"
           id="filter"
           name="filter"
-          label="Search Notes (min 4 characters)"
+          label="Search Notes (min 4 characters, MySQL FULLTEXT - Not a straight filter)"
           type="text"
           fullWidth
           variant="standard"
