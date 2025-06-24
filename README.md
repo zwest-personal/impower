@@ -85,14 +85,10 @@ Using Serialize ORM for DB since we don't need any fine tuning at this time.
 # TODOS
 Punchlist of items, by the time this gets to git it'll probably have checkmarks next to some entries.
 
-- Start up service
-- (POST) anonymize note (Future)
-- (POST) create campaign (Future)
-- (PATCH) edit campaign (Future)
+- More campaign options
+- Better multi-user behaviors (eg restricting deletions to original poster)
 - Build Serverless deploy
-- Fix text filterization - Using MySQL Fulltext which uses 'natural' filtering
-
-# "If I kept going"
-- Authorization (eg no deletion unless sufficient rights)
-- Add websockets in - if two or more canvassers are working the same campaign, push realtime updates to the others to indicate progress, notes, etc.
-- Better unit/integration tests - kinda skimmed over these just as I'd already added in so much.  Generally speaking I see any automated testing as most important for regression prevention rather than testing basic logic (with exceptions)
+- Authorization
+- Websocket support (rather than polling for the lists like now)
+- Expand unit/integration tests.  Barebones right now.
+- Cleanup of remaining linter errors, mostly TypeScript errors for using generic types or no types on some elements

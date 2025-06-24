@@ -7,9 +7,9 @@ function App() {
     const [session, setSession] = useState();
 
     return (
-        <>
+        <div>
             {session ? <Dashboard/> : <Login setSession={setSession}/>}
-        </>
+        </div>
     )
 }
 

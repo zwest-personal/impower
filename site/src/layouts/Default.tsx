@@ -1,30 +1,34 @@
 import * as React from 'react';
-import { Outlet, useLocation, useParams, matchPath } from 'react-router';
-import { DashboardLayout } from '@toolpad/core/DashboardLayout';
-import { PageContainer } from '@toolpad/core/PageContainer';
+import {Outlet, useLocation, useParams, matchPath} from 'react-router';
+import {DashboardLayout} from '@toolpad/core/DashboardLayout';
+import {PageContainer} from '@toolpad/core/PageContainer';
+import {CssBaseline} from '@mui/material';
+
+import {createGlobalStyle} from "styled-components"
+
+const GlobalStyle = createGlobalStyle`
+    body {
+        background: #121212;
+        margin: 0;
+        padding: 0;
+    }
+    #root {
+        background: #121212;
+        margin: 0;
+        padding: 0;
+    }
+`
 
 export default function Layout() {
-    const location = useLocation();
-    const { noteId } = useParams();
 
-    const title = React.useMemo(() => {
-        if (location.pathname === '/notes/new') {
-            return 'New Note';
-        }
-        if (matchPath('/notes/:noteId/edit', location.pathname)) {
-            return `Note ${noteId} - Edit`;
-        }
-        if (noteId) {
-            return `Note ${noteId}`;
-        }
-        return undefined;
-    }, [location.pathname, noteId]);
-
-    return (
-        <DashboardLayout>
-            <PageContainer title={title}>
-                <Outlet />
-            </PageContainer>
-        </DashboardLayout>
-    );
+  return (
+    <CssBaseline>
+      <DashboardLayout>
+        <PageContainer>
+          <Outlet/>
+        </PageContainer>
+      </DashboardLayout>
+      <GlobalStyle/>
+    </CssBaseline>
+  );
 }

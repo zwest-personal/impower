@@ -8,6 +8,17 @@ import Notes from './components/Notes';
 import Dashboard from './components/Dashboard';
 import Campaigns from './components/Campaigns';
 
+import { createGlobalStyle } from "styled-components"
+
+const GlobalStyle = createGlobalStyle`
+    body {
+        background: #121212;
+    }
+    #root {
+        background: #121212;
+    }
+`
+
 const router = createBrowserRouter([
     {
         Component: App,
@@ -37,5 +48,6 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
         <RouterProvider router={router} />
-    </React.StrictMode>,
+        <GlobalStyle />
+    </React.StrictMode>
 );
