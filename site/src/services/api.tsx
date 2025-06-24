@@ -1,4 +1,4 @@
-import axios from "axios"
+import axios, {AxiosError} from "axios"
 
 export const api = axios.create({
     withCredentials: true,
@@ -9,15 +9,19 @@ export const api = axios.create({
  * Handle JSend errors
  * @param error
  */
-const errorHandler = (error: any) => {
-    const statusCode = error.response?.status
+const errorHandler = (error: unknown) => {
+    if (error instanceof AxiosError) {
+        const statusCode = error?.response?.status
 
-    // logging only errors that are not 401
-    if (statusCode && statusCode !== 401) {
-        console.error(error)
+        // logging only errors that are not 401
+        if (statusCode && statusCode !== 401) {
+            console.error(error)
+        }
+
+        return Promise.reject(error)
+    } else {
+        return Promise.reject(error)
     }
-
-    return Promise.reject(error)
 }
 
 // registering the custom error handler to the
