@@ -76,6 +76,20 @@ export default function NoteModal({showModal, setShowModal, refresh, note}: { sh
                 <DialogTitle>{note.noteId ? "Update Note" : "Create New Note"}</DialogTitle>
                 <DialogContent>
                     <TextField
+                      autoFocus
+                      required
+                      margin="dense"
+                      id="name"
+                      name="fullName"
+                      label="Full Name"
+                      type="text"
+                      fullWidth
+                      variant="standard"
+                      defaultValue={note.fullName}
+                      onChange={handleChange}
+                    />
+
+                    <TextField
                         autoFocus
                         required
                         margin="dense"
@@ -112,7 +126,6 @@ export default function NoteModal({showModal, setShowModal, refresh, note}: { sh
                             fullWidth
                             onChange={handleChange}
                         >
-                            <MenuItem value="">No Campaign</MenuItem>
                             {campaignsList.map((campaign) => (
                                 <MenuItem value={campaign.campaignId}>{campaign.name}</MenuItem>
                             ))}

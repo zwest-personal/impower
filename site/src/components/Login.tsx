@@ -48,7 +48,7 @@ export default function Login({setSession}: {setSession: Function}) {
             </div>
         {register ? <Register setRegister={setRegister} setRegisterSuccess={setRegisterSuccess}/> :
             <form onSubmit={onSubmit} className="card">
-                <FormControl sx={{m: 1, width: '25ch'}} variant="outlined" >
+                <FormControl sx={{m: 1, width: '25ch'}} fullWidth={true} variant="outlined" >
                     <InputLabel style={Text} htmlFor="outlined-email-helper-text">Email</InputLabel>
                     <OutlinedInput
                         fullWidth
