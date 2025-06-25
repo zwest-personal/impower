@@ -12,8 +12,7 @@ import {AxiosError} from "axios";
 const useStyles = makeStyles({
   logo: {
     // padding: 0
-    height: '40ch',
-    img: {
+    '& svg': {
       height: '40ch'
     }
   },

@@ -10,8 +10,10 @@ import {makeStyles} from "@mui/styles";
 const useStyles = makeStyles({
   logo: {
     padding: 0,
-    width: '40px',
-    height: '40px',
+    '& svg': {
+      width: '40px',
+      height: '40px',
+    }
   },
   theme: {
     color: "maroon"
