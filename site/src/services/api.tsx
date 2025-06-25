@@ -2,7 +2,7 @@ import axios, {AxiosError} from "axios"
 
 export const api = axios.create({
     withCredentials: true,
-    baseURL: import.meta.env.VITE_API_PATH
+    baseURL: import.meta.env?.VITE_API_PATH || '/api' // Slightly hacky tweak for testing
 })
 
 /**

@@ -35,6 +35,7 @@ const csvHeaders = [
 ];
 
 function Notes() {
+  // TODO Merge/refactor the states a bit, got a pile up
   const [note, setNote] = useState<Note | null>(null);
   const [noteList, setNoteList] = useState<Note[]>([]);
   const [notesError, setNotesError] = useState("");
