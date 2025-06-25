@@ -1,4 +1,5 @@
 /// <reference types="vite/client" />
+/// <reference types="vite-plugin-svgr/client" />
 
 // tslint:disable-next-line
 interface ViteTypeOptions {

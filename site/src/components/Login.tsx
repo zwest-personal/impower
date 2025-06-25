@@ -4,7 +4,7 @@ import {type FormEvent, useState} from "react";
 import {UsersService} from "../services/users.tsx";
 import Register from "./Register.tsx";
 import ErrorPopup from "./widgets/ErrorPopup.tsx";
-import imp from '@public/imp.svg'
+import Imp from '@src/assets/imp.svg'
 
 import {makeStyles} from '@mui/styles';
 import {AxiosError} from "axios";
@@ -12,7 +12,10 @@ import {AxiosError} from "axios";
 const useStyles = makeStyles({
   logo: {
     // padding: 0
-    height: '40ch'
+    height: '40ch',
+    img: {
+      height: '40ch'
+    }
   },
   wrapper: {
     margin: "0 auto",
@@ -68,8 +71,8 @@ export default function Login({setSession}: { setSession: Function }) {
 
   return (
     <div className={classes.wrapper}>
-      <div>
-        <img src={imp} className={classes.logo} alt="ImPower logo"/>
+      <div className={classes.logo} title="ImPower">
+        <Imp />
       </div>
       {register ? <Register setRegister={setRegister} setRegisterSuccess={setRegisterSuccess}/> :
         <form onSubmit={onSubmit} className={classes.root}>

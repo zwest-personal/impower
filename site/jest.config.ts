@@ -27,7 +27,7 @@ const config: Config = {
         }
       ],
     "^.+\\.(js|jsx)$": "babel-jest",
-    "^.+\\.svg": "<rootDir>/__mocks__/svg.tsx"
+    "^.+\\.svg": "jest-transformer-svg"
   },
   "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(js|jsx|ts|tsx)$",
   "moduleFileExtensions": ["js", "json", "jsx", "tsx", "ts"],

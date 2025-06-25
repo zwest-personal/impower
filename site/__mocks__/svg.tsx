@@ -1,7 +1,12 @@
-import * as React from 'react'
-const SvgrMock = React.forwardRef<SVGSVGElement, React.SVGProps<SVGSVGElement>>(
-  (props, ref) => <svg ref={ref} {...props} />
-);
+// import { forwardRef } from 'react';
+
+function SvgrMock(props) {
+  return (
+    `<>
+      <span ref=${props.ref} {...props} />
+    </>`
+  )
+}
 
 export const ReactComponent = SvgrMock;
 export default SvgrMock;
