@@ -19,7 +19,7 @@ export default function CampaignModal({showModal, setShowModal, refresh}: { show
         setShowModal(false);
     };
 
-    const handleChange = (e) => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement> ) => {
         const { name, value } = e.target;
         setDataState({ ...dataState, [name]: value });
     }

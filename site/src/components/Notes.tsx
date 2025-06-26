@@ -12,6 +12,7 @@ import {Button, CircularProgress} from "@mui/material";
 import NoteModal from "./widgets/NoteModal.tsx";
 import {CSVLink} from "react-csv";
 import TextField from "@mui/material/TextField";
+import {AxiosError} from "axios";
 
 
 const csvHeaders = [
@@ -34,6 +35,7 @@ const csvHeaders = [
 ];
 
 function Notes() {
+  // TODO Merge/refactor the states a bit, got a pile up
   const [note, setNote] = useState<Note | null>(null);
   const [noteList, setNoteList] = useState<Note[]>([]);
   const [notesError, setNotesError] = useState("");
@@ -46,9 +48,12 @@ function Notes() {
       setLoading(true)
       const results = await NotesService.list(filter)
       setNoteList(results)
-    } catch (e) {
-      console.error(e);
-      setNotesError(e.message);
+    } catch (e: unknown) {
+      if (e instanceof AxiosError) {
+        setNotesError(e.message);
+      } else {
+        console.error(e);
+      }
     }
     setLoading(false)
 
@@ -79,9 +84,8 @@ function Notes() {
   /**
    * handleFilter watches the text filter and queries on debounce
    */
-  async function handleFilter(e) {
-    const { value } = e.target;
-    setFilter(value)
+  async function handleFilter(e: React.ChangeEvent<HTMLInputElement> ) {
+    setFilter(e.target.value)
   }
 
   React.useEffect(() => {
@@ -114,7 +118,7 @@ function Notes() {
           filename={"impower-notes.csv"}
           target="_blank"
         >
-          <Button style={{ width: "25ch"}} variant="outlined" color="cancel" size="large" >
+          <Button style={{ width: "25ch"}} variant="outlined" color="info" size="large" >
             Export Notes
           </Button>
         </CSVLink>
