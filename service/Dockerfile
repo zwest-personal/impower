@@ -1,13 +1,13 @@
 #multi-stage Docker build for MAXIMUM EFFICIENCY
 #setup
-FROM node:22-alpine as setup
+FROM node:22-alpine AS setup
 WORKDIR /app
 COPY package*.json ./
 RUN npm install
 COPY . .
 
 # build
-FROM setup as build
+FROM setup AS build
 WORKDIR /app
 RUN npm run build
 
