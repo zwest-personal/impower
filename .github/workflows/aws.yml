@@ -27,8 +27,8 @@ on:
     branches: [ "main" ]
 
 env:
-  AWS_REGION: us-east-1             
-  ECR_REPOSITORY: 030015548744.dkr.ecr.us-east-1.amazonaws.com/impower         
+  AWS_REGION: us-east-1
+  ECR_REPOSITORY: 030015548744.dkr.ecr.us-east-1.amazonaws.com/impower
   ECS_SERVICE: impower                 
   ECS_CLUSTER: arn:aws:ecs:us-east-1:030015548744:cluster/impower              
   ECS_TASK_DEFINITION: MY_TASK_DEFINITION # set this to the path to your Amazon ECS task definition
@@ -70,9 +70,9 @@ jobs:
         # Build a docker container and
         # push it to ECR so that it can
         # be deployed to ECS.
-        docker build -t $ECR_REPOSITORY:$IMAGE_TAG ./service
-        docker push $ECR_REPOSITORY:$IMAGE_TAG
-        echo "image=$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
+        docker build -t $ECR_REPOSITORY/service:$IMAGE_TAG ./service
+        docker push $ECR_REPOSITORY/service:$IMAGE_TAG
+        echo "image=$ECR_REPOSITORY/service:$IMAGE_TAG" >> $GITHUB_OUTPUT
 
     - name: Fill in the new image ID in the Amazon ECS task definition
       id: task-def
