@@ -2,7 +2,8 @@
   "name": "service",
   "version": "0.0.0",
   "scripts": {
-    "build": "ts-node ./scripts/build.ts",
+    "build": "npm install && npx tsc",
+    "run": "node ./dist/index.js",
     "clean-install": "rm -rf ./node_modules && rm -r package-lock.json && npm i",
     "dev": "NODE_ENV=local ts-node ./src",
     "dev:hot": "NODE_ENV=local nodemon",
@@ -15,6 +16,9 @@
   },
   "engines": {
     "node": ">=16.0.0"
+  },
+  "_moduleAliases": {
+    "@src/*": "src/*"
   },
   "dependencies": {
     "bcrypt": "^6.0.0",
