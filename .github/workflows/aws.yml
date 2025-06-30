@@ -33,16 +33,14 @@ env:
   ECS_CLUSTER: arn:aws:ecs:us-east-1:030015548744:cluster/impower              
   ECS_TASK_DEFINITION: MY_TASK_DEFINITION # set this to the path to your Amazon ECS task definition
                                                # file, e.g. .aws/task-definition.json
-  CONTAINER_NAME: MY_CONTAINER_NAME           # set this to the name of the container in the
-                                               # containerDefinitions section of your task definition
-                                               
+
 permissions:
   contents: read
 
 # Build just service for now, add site after this is ready
 jobs:
-  deploy:
-    name: Build and Deploy - Service
+  build:
+    name: Build
     runs-on: ubuntu-latest
     environment: development
 
@@ -61,20 +59,35 @@ jobs:
       id: login-ecr
       uses: aws-actions/amazon-ecr-login@v1
 
-    - name: Build, tag, and push image to Amazon ECR
+    # for simplicity’s sake to start, just rebuild our three containers on push
+    - name: Build/push Service
       id: build-image
       env:
         SUB_REGISTRY: service
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         IMAGE_TAG: ${{ github.sha }}
       run: |
-        # Build a docker container and
-        # push it to ECR so that it can
-        # be deployed to ECS.
-        docker build -t $ECR_REPOSITORY/$SUB_REGISTRY:$IMAGE_TAG ./service
+        docker build -t $ECR_REPOSITORY/$SUB_REGISTRY:$IMAGE_TAG ./$SUB_REGISTRY
+        docker push $ECR_REPOSITORY/$SUB_REGISTRY:$IMAGE_TAG
+        echo "image=$ECR_REPOSITORY/$SUB_REGISTRY:$IMAGE_TAG" >> $GITHUB_OUTPUT
+    - name: Build/push Site
+      id: build-image
+      env:
+        SUB_REGISTRY: site
+        ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+        IMAGE_TAG: ${{ github.sha }}
+      run: |
+        docker build -t $ECR_REPOSITORY/$SUB_REGISTRY:$IMAGE_TAG ./$SUB_REGISTRY
         docker push $ECR_REPOSITORY/$SUB_REGISTRY:$IMAGE_TAG
         echo "image=$ECR_REPOSITORY/$SUB_REGISTRY:$IMAGE_TAG" >> $GITHUB_OUTPUT
 
+  # TODO Redo resources with Terraform
+  deploy:
+    name: Deploy - Site and Service
+    runs-on: ubuntu-latest
+    environment: development
+
+    steps:
     - name: Fill in the new image ID in the Amazon ECS task definition
       id: task-def
       uses: aws-actions/amazon-ecs-render-task-definition@v1
