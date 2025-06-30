@@ -1,3 +1,5 @@
+require('module-alias/register')
+
 import logger from 'jet-logger';
 
 import Config from '@src/common/config';

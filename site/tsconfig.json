@@ -21,7 +21,7 @@
     { "path": "./tsconfig.app.json"},
     { "path": "./tsconfig.node.json"}
   ],
-  "include": ["src", "vite-env.d.ts"],
+  "include": ["vite-env.d.ts"],
   "types": ["jest"],
   "esModuleInterop": true
 }
