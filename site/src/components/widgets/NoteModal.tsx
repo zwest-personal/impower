@@ -9,7 +9,7 @@ import {useEffect, useState} from "react";
 import ErrorPopup from "./ErrorPopup.tsx";
 import {CampaignsService} from "../../services/campaigns.tsx";
 import type {Campaign} from "../../models/Campaign.tsx";
-import {FormControl, InputLabel, MenuItem, Select, TextareaAutosize} from "@mui/material";
+import {FormControl, InputLabel, MenuItem, Select, TextareaAutosize, type SelectChangeEvent} from "@mui/material";
 import {NotesService} from "../../services/notes.tsx";
 import type {Note} from "../../models/Note.tsx";
 
@@ -37,7 +37,12 @@ export default function NoteModal({showModal, setShowModal, refresh, note}: { sh
         fetchCampaigns();
     }, []);
 
-    const handleChange = (e) => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>) => {
+        const { name, value } = e.target;
+        setDataState({ ...dataState, [name]: value });
+    }
+
+    const handleCampaignChange = (e: SelectChangeEvent) => {
         const { name, value } = e.target;
         setDataState({ ...dataState, [name]: value });
     }
@@ -124,7 +129,7 @@ export default function NoteModal({showModal, setShowModal, refresh, note}: { sh
                             defaultValue={note.campaignId}
                             label="Campaign"
                             fullWidth
-                            onChange={handleChange}
+                            onChange={handleCampaignChange}
                         >
                             {campaignsList.map((campaign) => (
                                 <MenuItem value={campaign.campaignId}>{campaign.name}</MenuItem>
