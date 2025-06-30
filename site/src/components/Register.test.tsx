@@ -1,7 +1,4 @@
-import * as React from 'react';
-import renderer from 'react-test-renderer';
-import {it, describe, expect, test} from '@jest/globals';
-import Register from "./Register";
+import {it} from '@jest/globals';
 
 it('Testing the tests', () => {
 
