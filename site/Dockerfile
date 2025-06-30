@@ -14,7 +14,7 @@ RUN npm run build
 # run
 FROM nginx:alpine
 
-COPY ./dev/nginx/entrypoint.sh .
+COPY ./nginx/deploy/entrypoint.sh .
 COPY ./nginx/deploy/nginx.conf /etc/nginx/nginx.conf
 COPY --from=build /app/dist ./app/static
 
