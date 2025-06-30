@@ -61,7 +61,7 @@ jobs:
 
     # for simplicity’s sake to start, just rebuild our three containers on push
     - name: Build/push Service
-      id: build-image
+      id: build-image-service
       env:
         SUB_REGISTRY: service
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
@@ -71,7 +71,7 @@ jobs:
         docker push $ECR_REPOSITORY/$SUB_REGISTRY:$IMAGE_TAG
         echo "image=$ECR_REPOSITORY/$SUB_REGISTRY:$IMAGE_TAG" >> $GITHUB_OUTPUT
     - name: Build/push Site
-      id: build-image
+      id: build-image-site
       env:
         SUB_REGISTRY: site
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
