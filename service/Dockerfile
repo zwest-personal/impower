@@ -14,8 +14,8 @@ RUN npm run build
 # run
 FROM node:22-alpine
 WORKDIR /usr/src/app
-COPY package*.json ./
+COPY --from=build /app/package*.json ./
 RUN npm install --only=production
 COPY --from=build /app/dist ./dist
 EXPOSE 8080
-ENTRYPOINT ["npm", "run"]
+ENTRYPOINT ["node", "dist/src/index.js"]
