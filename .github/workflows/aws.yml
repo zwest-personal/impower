@@ -65,7 +65,8 @@ jobs:
       env:
         SUB_REGISTRY: service
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-        IMAGE_TAG: ${{ github.sha }}
+        IMAGE_TAG: latest
+        # Switch back to SHA once we're set up - ${{ github.sha }}
       run: |
         docker build -t $ECR_REPOSITORY/$SUB_REGISTRY:$IMAGE_TAG ./$SUB_REGISTRY
         docker push $ECR_REPOSITORY/$SUB_REGISTRY:$IMAGE_TAG
@@ -75,7 +76,8 @@ jobs:
       env:
         SUB_REGISTRY: site
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-        IMAGE_TAG: ${{ github.sha }}
+        IMAGE_TAG: latest
+        # Switch back to SHA once we're set up - ${{ github.sha }}
       run: |
         docker build -t $ECR_REPOSITORY/$SUB_REGISTRY:$IMAGE_TAG ./$SUB_REGISTRY
         docker push $ECR_REPOSITORY/$SUB_REGISTRY:$IMAGE_TAG
