@@ -17,5 +17,6 @@ WORKDIR /usr/src/app
 COPY --from=build /app/package*.json ./
 RUN npm install --only=production
 COPY --from=build /app/dist ./dist
+ENV PORT=8080
 EXPOSE 8080
-ENTRYPOINT ["node", "dist/src/index.js"]
+ENTRYPOINT ["node", "", "dist/src/index.js"]
