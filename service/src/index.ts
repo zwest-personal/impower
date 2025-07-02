@@ -10,7 +10,7 @@ import server from './server';
                                   Run
 ******************************************************************************/
 
-const SERVER_START_MSG = ('Express server started on port: ' + 
-  Config.ServerPort.toString());
+const SERVER_START_MSG = ('Express server started on host:port ' +
+  Config.ServerHost.toString() + ':' + Config.ServerPort.toString());
 
 server.listen(Config.ServerPort, Config.ServerHost, () => logger.info(SERVER_START_MSG));
