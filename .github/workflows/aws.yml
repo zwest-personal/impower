@@ -8,7 +8,9 @@ env:
   AWS_REGION: us-east-1
   ECR_REPOSITORY: 030015548744.dkr.ecr.us-east-1.amazonaws.com/impower
   ECS_SERVICE: impower                 
-  ECS_CLUSTER: arn:aws:ecs:us-east-1:030015548744:cluster/impower              
+  ECS_CLUSTER: arn:aws:ecs:us-east-1:030015548744:cluster/impower
+  TASK_SERVICE: arn:aws:ecs:us-east-1:030015548744:task-definition/impower-service:3
+  TASK_SITE: arn:aws:ecs:us-east-1:030015548744:task-definition/impower-site:2
 
 permissions:
   contents: read
@@ -67,25 +69,27 @@ jobs:
     environment: development
 
     steps:
+    - name: Download Service Task
+      run:
+        |
+        aws ecs describe-task-definition --task-definition ${{ env.TASK_SERVICE }} --query taskDefinition > task-definition.service.json
     - name: Deploy Service Task
       uses: aws-actions/amazon-ecs-deploy-task-definition@v1
       env:
         TASK: arn:aws:ecs:us-east-1:030015548744:task-definition/impower-service:3
-      run:
-        |
-        aws ecs describe-task-definition --task-definition ${{ env.TASK }} --query taskDefinition > task-definition.service.json
       with:
         task-definition: task-definition.service.json
         service: ${{ env.ECS_SERVICE }}
         cluster: ${{ env.ECS_CLUSTER }}
         wait-for-service-stability: true
+    - name: Download Site Task
+      run:
+        |
+        aws ecs describe-task-definition --task-definition ${{ env.TASK_SITE }} --query taskDefinition > task-definition.site.json
     - name: Deploy Site Task
       uses: aws-actions/amazon-ecs-deploy-task-definition@v1
       env:
         TASK: arn:aws:ecs:us-east-1:030015548744:task-definition/impower-site:2
-      run:
-        |
-        aws ecs describe-task-definition --task-definition ${{ env.TASK }} --query taskDefinition > task-definition.site.json
       with:
         task-definition: task-definition.site.json
         service: ${{ env.ECS_SERVICE }}
