@@ -92,7 +92,7 @@ jobs:
         task-definition: task-definition.service.json
         service: ${{ env.ECS_SERVICE_SERVICE }}
         cluster: ${{ env.ECS_CLUSTER }}
-        wait-for-service-stability: true
+#        wait-for-service-stability: true
     - name: Download Site Task
       run:
         |
@@ -103,4 +103,4 @@ jobs:
         task-definition: task-definition.site.json
         service: ${{ env.ECS_SERVICE_SITE }}
         cluster: ${{ env.ECS_CLUSTER }}
-        wait-for-service-stability: true
+#        wait-for-service-stability: true
