@@ -9,11 +9,11 @@ env:
   ECR_REPOSITORY: "030015548744.dkr.ecr.us-east-1.amazonaws.com/impower"
   ECS_CLUSTER: "arn:aws:ecs:us-east-1:030015548744:cluster/impower"
 
-  ECS_SERVICE_SERVICE: "arn:aws:ecs:us-east-1:030015548744:service/impower/impower-service:latest"
-  ECS_SERVICE_SITE: "arn:aws:ecs:us-east-1:030015548744:service/impower/impower-site:latest"
+  ECS_SERVICE_SERVICE: "arn:aws:ecs:us-east-1:030015548744:service/impower/impower-service"
+  ECS_SERVICE_SITE: "arn:aws:ecs:us-east-1:030015548744:service/impower/impower-site"
 
-  TASK_SERVICE: "arn:aws:ecs:us-east-1:030015548744:task-definition/impower-service:latest"
-  TASK_SITE: "arn:aws:ecs:us-east-1:030015548744:task-definition/impower-site:latest"
+  TASK_SERVICE: "arn:aws:ecs:us-east-1:030015548744:task-definition/impower-service"
+  TASK_SITE: "arn:aws:ecs:us-east-1:030015548744:task-definition/impower-site"
 
 permissions:
   contents: read
