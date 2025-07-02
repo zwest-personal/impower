@@ -84,7 +84,7 @@ jobs:
         |
         aws ecs describe-task-definition --task-definition ${{ env.TASK_SERVICE }} --query taskDefinition > task-definition.service.json
     - name: Deploy Service Task
-      uses: aws-actions/amazon-ecs-deploy-task-definition@v1
+      uses: aws-actions/amazon-ecs-deploy-task-definition@v2
       env:
         TASK: arn:aws:ecs:us-east-1:030015548744:task-definition/impower-service:3
       with:
@@ -97,7 +97,7 @@ jobs:
         |
         aws ecs describe-task-definition --task-definition ${{ env.TASK_SITE }} --query taskDefinition > task-definition.site.json
     - name: Deploy Site Task
-      uses: aws-actions/amazon-ecs-deploy-task-definition@v1
+      uses: aws-actions/amazon-ecs-deploy-task-definition@v2
       env:
         TASK: arn:aws:ecs:us-east-1:030015548744:task-definition/impower-site:2
       with:
