@@ -13,4 +13,4 @@ import server from './server';
 const SERVER_START_MSG = ('Express server started on port: ' + 
   Config.ServerPort.toString());
 
-server.listen(Config.ServerPort, () => logger.info(SERVER_START_MSG));
+server.listen(Config.ServerPort, Config.ServerHost, () => logger.info(SERVER_START_MSG));

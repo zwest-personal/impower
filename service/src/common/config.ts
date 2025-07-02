@@ -5,7 +5,8 @@ import {NodeEnvs} from './constants';
 const Config = jetEnv({
   ServiceName: str,
   Env: isEnumVal(NodeEnvs),
-  ServerPort: str,
+  ServerHost: str,
+  ServerPort: num,
   ApiPath: str,
 
   MysqlDb: str,
