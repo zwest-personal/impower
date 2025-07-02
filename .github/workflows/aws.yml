@@ -60,6 +60,7 @@ jobs:
   # Deploy using the manually set up tasks
   # 'Proper' setup would have fewer manual inputs, potenitally create a new task revision or deploy using
   # the git sha tag rather than 'latest' each time, split the site/service deploys, etc
+  # TODO Convert to local tasks
   deploy:
     name: Deploy - Site and Service
     runs-on: ubuntu-latest
@@ -70,8 +71,11 @@ jobs:
       uses: aws-actions/amazon-ecs-deploy-task-definition@v1
       env:
         TASK: arn:aws:ecs:us-east-1:030015548744:task-definition/impower-service:3
+      run:
+        |
+        aws ecs describe-task-definition --task-definition ${{ env.TASK }} --query taskDefinition > task-definition.service.json
       with:
-        task-definition: ${{ env.TASK }}
+        task-definition: task-definition.service.json
         service: ${{ env.ECS_SERVICE }}
         cluster: ${{ env.ECS_CLUSTER }}
         wait-for-service-stability: true
@@ -79,8 +83,11 @@ jobs:
       uses: aws-actions/amazon-ecs-deploy-task-definition@v1
       env:
         TASK: arn:aws:ecs:us-east-1:030015548744:task-definition/impower-site:2
+      run:
+        |
+        aws ecs describe-task-definition --task-definition ${{ env.TASK }} --query taskDefinition > task-definition.site.json
       with:
-        task-definition: ${{ env.TASK }}
+        task-definition: task-definition.site.json
         service: ${{ env.ECS_SERVICE }}
         cluster: ${{ env.ECS_CLUSTER }}
         wait-for-service-stability: true
