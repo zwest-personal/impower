@@ -2,7 +2,7 @@
 
 Powered by Imps!
 
-Cloud endpoint: `http://impower-dev-alb-866450052.us-east-1.elb.amazonaws.com/`
+Cloud endpoint: `https://dev.impower.me`
 
 (WIP - build and deploy works, loads and register works, but login isn't setting cookie properly)
 
