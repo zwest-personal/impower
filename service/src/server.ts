@@ -49,7 +49,7 @@ app.use(
     store: redisStore,
     resave: false,
     saveUninitialized: false,
-    secret: 'impowerEMPOWER',
+    secret: 'impowerEMPOWER!!@#$%', // TODO Secret-ify
     cookie: sessionConfig,
   }),
 );
