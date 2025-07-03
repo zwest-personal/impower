@@ -32,6 +32,16 @@ const redisStore = new RedisStore({
   prefix: 'impower:',
 });
 
+
+let sessionConfig = {}
+if (Config.Env !== 'local') {
+  sessionConfig = {
+    sameSite: 'none',
+    httpOnly: true,
+    secure: false,
+  }
+}
+
 // Add in the session store middleware
 app.use(
   session({
@@ -39,6 +49,7 @@ app.use(
     resave: false,
     saveUninitialized: false,
     secret: 'impowerEMPOWER',
+    cookie: sessionConfig,
   }),
 );
 

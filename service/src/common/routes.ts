@@ -35,11 +35,7 @@ const RouteList:RouteSet = {
         Ping: {
           path: '/ping',
           method: 'get',
-        },
-        Session: {
-          path: '/session',
-          method: 'get',
-        },
+        }
       },
     },
     Notes: {
