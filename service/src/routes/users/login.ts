@@ -21,6 +21,7 @@ async function login(req: IReq, res: IRes) {
       throw new Error('User does not exist');
     }
     const loginResult = await u.validatePassword(u.password, req.body.password as string);
+    console.log('loginResult: ', loginResult);
     if (!loginResult) {
       res.status(HttpStatusCodes.UNAUTHORIZED).json(HTTPResponse.error('Invalid Email or Password'));
     } else {
@@ -31,7 +32,9 @@ async function login(req: IReq, res: IRes) {
         fullName: u.fullName,
       };
 
+      console.log('Saving session...')
       req.session.save(() => {
+        console.log('Session saved!  Redirecting...')
         res.status(HttpStatusCodes.OK).json(HTTPResponse.success(req.session.user));
       });
     }
