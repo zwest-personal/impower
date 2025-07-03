@@ -6,19 +6,8 @@ Cloud endpoint: `http://impower-dev-alb-866450052.us-east-1.elb.amazonaws.com/`
 
 (WIP - build and deploy works, loads and register works, but login isn't setting cookie properly)
 
-Empower Project demo code.
-
-Opted to go a bit overboard on the site for funsies and because I wanted to demonstrate my capabilities to the best of
-my ability, and projects like this are where I'm able to do that best.  I'll confess stuff like live coding can make me anxious
-(at least in an interview setting when I don't know the people) but when I get going on design/coding I build up a lot of 
-momentum and can do a lot.  So yes, it def took more than four hours but don't feel bad - having a specific goal of some kind
-motivates me and allows me to go a bit ham on things.
-
-Also, did I do this in 4-5h?  Most definitely not...  But I love experimenting with builds/backends/flows/setup and was trying out
-a pile of new-to-me stuff (eg sequelize), so it's hard to put an exact number on 'hours I spent on the assigned task' vs
-'hours doing stuff that could turn this into a real production app'.  Building up all the things that make all the later things
-come to fruition oh so much faster is my jam.  I'm also (to a fault) a completionist. I want everything to be *there* and 
-working, I want it all to look and feel and be complete.
+Demo project derived from a coding challenge, built upon a lot beyond that point.  Tech stack
+derived from challenge specifics.
 
 ## Running
 
@@ -38,20 +27,13 @@ Access at:
 ```
 localhost:8080
 ```
-API is at:
+API is at: (if you wish to view directly
 ```
 localhost:8080/api
 ```
-This is what I typically call the 'local' environment.  
-
-Dev/remote setup is a WIP - building out a fresh CICD pipeline takes a bit more time and didn't want to hold up the code for it.
-
-Unit/Integration tests are also a WIP - I'll confess I'm not the best about making sure they're always there and don't
-tend to work in a TDD fashion so they end up coming after the feature is done and just test the happy path.  Generally
-I treat them as primarily a regression protection.
+This is what I typically call the 'local' environment.
 
 ## Folders
-`docs` contains the original design spec, a rough design outline, and anything else I put together.
 `site` is the React UI
 `service` is the Node TS backend
 `dev` is anything need for standing up the system beyond what the dockerfiles found in the individual service directories (eg the MySQL migration script)
@@ -60,8 +42,9 @@ I treat them as primarily a regression protection.
 
 None.  I do use boilerplate generator (Vite for front end) and IntelliJ's auto-complete (very AI-lite, mostly useful for filling out data structures), but no generative AI.
 
-I'm not opposed to using them for generating basic boilerplate code, but I generally don't like using LLMs both due to the variety
-of issues that surround them (technological, environmental, moral).
+I'm not opposed to using them for generating basic boilerplate code, but I generally don't like using LLMs/GenAI both due to the variety
+of issues that surround them (technological, quality, environmental, moral).  They can be useful in specific circumstances but I've long been
+on the 'Every tool for its environment' boat.
 
 As a note with this in case you read some of my code and think it looks AI like...
 I like dashes, apparently AI likes em-dashes.  UGH.
@@ -78,9 +61,7 @@ writing and poetry.  I like to say if poetry was a viable career path I might ha
 
 ## Foundations
 
-A fair bit of the devops(y) code here is stuff I've built previously, so it's not totally from scratch, but it *is* of my
-own creation and refinement just reused. The compose/docker/make bits are cribbed from my personal 'demo' repo that was in
-part created to try to showcase skill-set, but also to keep up on various tech.
+Some DevOps/Foundational code I crib from my own past work, some built fresh.
 
 UI was stood up with Vite
 Backend is just manual code (with some imports of my own previous creations)
@@ -93,8 +74,7 @@ Punchlist of items, by the time this gets to git it'll probably have checkmarks 
 - More validation
 - More campaign options
 - Better multi-user behaviors (eg restricting deletions to original poster)
-- Build Serverless deploy
-- Authorization
+- Fix deployment
+Authorization
 - Websocket support (rather than polling for the lists like now)
 - Expand unit/integration tests.  Barebones right now.
-- Cleanup of remaining linter errors, mostly TypeScript errors for using generic types or no types on some elements
