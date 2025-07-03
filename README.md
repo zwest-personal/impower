@@ -2,6 +2,10 @@
 
 Powered by Imps!
 
+Cloud endpoint: `http://impower-dev-alb-866450052.us-east-1.elb.amazonaws.com/`
+
+(WIP - build and deploy works, loads and register works, but login isn't setting cookie properly)
+
 Empower Project demo code.
 
 Opted to go a bit overboard on the site for funsies and because I wanted to demonstrate my capabilities to the best of
