@@ -2,9 +2,7 @@
 
 Powered by Imps!
 
-Cloud endpoint: `https://dev.impower.me`
-
-(WIP - build and deploy works, loads and register works, but login isn't setting cookie properly)
+Dev Cloud endpoint: `https://dev.goimpower.me/`
 
 Demo project derived from a coding challenge, built upon a lot beyond that point.  Tech stack
 derived from challenge specifics.

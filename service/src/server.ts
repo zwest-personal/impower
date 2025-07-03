@@ -34,13 +34,13 @@ const redisStore = new RedisStore({
 
 
 // Disabling for now due to holiday
-let sessionConfig = {}
+let sessionConfig = {};
 if (Config.Env !== 'local') {
   sessionConfig = {
-    // sameSite: 'none',
-    // httpOnly: true,
-    // secure: false,
-  }
+    sameSite: 'none',
+    httpOnly: true,
+    secure: false,
+  };
 }
 
 // Add in the session store middleware
